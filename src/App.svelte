@@ -12,7 +12,7 @@
 
 <main>
 	<h1>Vocab table</h1>
-	<AddWord addWord={addWord} />
+	<AddWord on:add={addWord} />
 	<table cellspacing="0" cellpadding="0">
 		<thead>
 			<tr>

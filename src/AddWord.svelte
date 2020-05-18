@@ -1,10 +1,12 @@
 <script>
-  export let addWord;
+  import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
   let nl = '';
   let en = '';
 
   function handleClick() {
-    addWord({nl, en});
+    dispatch('add', {nl, en});
     nl = '';
     en = '';
   }
