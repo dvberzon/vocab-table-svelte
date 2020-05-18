@@ -1,45 +1,18 @@
 <script>
+	import initalVocab from './vocab';
+	import AddWord from './AddWord.svelte';
 	let nextId = 4;
-	let vocab = [
-		{
-			id: 1,
-			nl: 'vrouw',
-			en: 'woman',
-		},
-		{
-			id: 2,
-			nl: 'sinasappelsaap',
-			en: 'orange juice',
-		},
-		{
-			id: 3,
-			nl: 'boterham',
-			en: 'slice of bread',
-		},
-	];
-	let newWord = {nl: '', en: ''};
+	let vocab = initalVocab;
 	
-	function addWord() {
+	function addWord(word) {
 		nextId += 1;
-		vocab = [...vocab, {...newWord, id: nextId}];
-		newWord = {nl: '', en: ''};
+		vocab = [...vocab, {...word, id: nextId}];
 	}
 </script>
 
 <main>
 	<h1>Vocab table</h1>
-	<section class="add-form">
-		<h3>Add new word</h3>
-		<input
-			placeholder="Nederlands"
-			bind:value={newWord.nl}
-		/>
-		<input
-			placeholder="English"
-			bind:value={newWord.en}
-		/>
-		<button type="button" on:click={addWord}>Add</button>
-	</section>
+	<AddWord addWord={addWord} />
 	<table cellspacing="0" cellpadding="0">
 		<thead>
 			<tr>
