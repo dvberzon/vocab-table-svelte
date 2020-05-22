@@ -51,8 +51,4 @@
 	th {
 		border-bottom: 1px solid #ccc;
 	}
-
-	section.add-form {
-		padding: 10px;
-	}
 </style>
