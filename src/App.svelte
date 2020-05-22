@@ -1,12 +1,19 @@
 <script>
 	import initalVocab from './vocab';
 	import AddWord from './AddWord.svelte';
+	import Word from './Word.svelte';
 	let nextId = 4;
 	let vocab = initalVocab;
 	
-	function addWord(word) {
+	function addWord(event) {
+		const word = event.detail;
 		nextId += 1;
 		vocab = [...vocab, {...word, id: nextId}];
+	}
+
+	function removeWord(event) {
+		const id = event.detail;
+		vocab = vocab.filter((word) => word.id !== id);
 	}
 </script>
 
@@ -18,14 +25,16 @@
 			<tr>
 				<th>Nederlands</th>
 				<th>English</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
-			{#each vocab as {nl, en, id} (id)}
-				<tr>
-					<td>{nl}</td>
-					<td>{en}</td>
-				</tr>
+			{#each vocab as word (word.id)}
+				<Word
+					{...word}
+					on:remove={removeWord}
+					
+				/>	
 			{/each}
 		</tbody>
 	</table>
@@ -43,7 +52,7 @@
 		width: 100%;
 	}
 
-	table td, table th {
+	table th {
 		text-align: left;
 		padding: 5px;
 	}

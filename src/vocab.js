@@ -2,7 +2,7 @@ const initialVocab = [
   {
     id: 1,
     nl: 'vrouw',
-    en: 'womand',
+    en: 'woman',
   },
   {
     id: 2,
