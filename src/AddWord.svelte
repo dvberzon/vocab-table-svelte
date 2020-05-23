@@ -1,12 +1,13 @@
 <script>
   import { createEventDispatcher } from 'svelte';
+  import { vocab } from './vocab';
 
 	const dispatch = createEventDispatcher();
   let nl = '';
   let en = '';
 
   function handleClick() {
-    dispatch('add', {nl, en});
+    vocab.addWord({nl, en})
     nl = '';
     en = '';
   }

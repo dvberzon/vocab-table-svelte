@@ -1,5 +1,7 @@
 <script>
   import { createEventDispatcher } from 'svelte';
+  import { vocab } from './vocab';
+
   export let nl;
   export let en;
   export let id;
@@ -17,7 +19,7 @@
   }
   
   function remove() {
-    dispatch('remove', id);
+    vocab.removeWord(id);
   }
 </script>
 

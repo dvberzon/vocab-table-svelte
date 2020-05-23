@@ -1,32 +1,12 @@
 <script>
-	import initalVocab from './vocab';
 	import AddWord from './AddWord.svelte';
 	import Word from './Word.svelte';
-
-	let vocab = initalVocab;
-	
-	function nextId() {
-		const maxId = vocab.reduce(
-			(prevId, word) => prevId > word.id ? prevId : word.id,
-			0
-		);
-		return maxId + 1;
-	}
-
-	function addWord(event) {
-		const word = event.detail;
-		vocab = [...vocab, {...word, id: nextId()}];
-	}
-
-	function removeWord(event) {
-		const id = event.detail;
-		vocab = vocab.filter((word) => word.id !== id);
-	}
+	import { vocab } from './vocab';
 </script>
 
 <main>
 	<h1>Vocab table</h1>
-	<AddWord on:add={addWord} />
+	<AddWord />
 	<table cellspacing="0" cellpadding="0">
 		<thead>
 			<tr>
@@ -36,11 +16,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each vocab as word (word.id)}
+			{#each $vocab as word (word.id)}
 				<Word
 					{...word}
-					on:remove={removeWord}
-					
 				/>	
 			{/each}
 		</tbody>
