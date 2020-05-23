@@ -2,13 +2,20 @@
 	import initalVocab from './vocab';
 	import AddWord from './AddWord.svelte';
 	import Word from './Word.svelte';
-	let nextId = 4;
+
 	let vocab = initalVocab;
 	
+	function nextId() {
+		const maxId = vocab.reduce(
+			(prevId, word) => prevId > word.id ? prevId : word.id,
+			0
+		);
+		return maxId + 1;
+	}
+
 	function addWord(event) {
 		const word = event.detail;
-		nextId += 1;
-		vocab = [...vocab, {...word, id: nextId}];
+		vocab = [...vocab, {...word, id: nextId()}];
 	}
 
 	function removeWord(event) {
