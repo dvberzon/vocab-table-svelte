@@ -41,7 +41,7 @@
   td {
     text-align: left;
 		padding: 5px;
-    line-height: 20px
+    line-height: 24px
   }
 	td.control {
 		width: 40px;
